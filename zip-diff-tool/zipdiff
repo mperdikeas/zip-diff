@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+java -classpath \
+:$(echo $DIR/dist/*.jar | tr ' ' ':')\
+:$(echo $DIR/lib-ivy/*.jar | tr ' ' ':')\
+ me.marcus.junius.brutus.zipdiff.ZipDiff $@
