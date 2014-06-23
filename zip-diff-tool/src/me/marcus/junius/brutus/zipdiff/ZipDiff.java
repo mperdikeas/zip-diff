@@ -2,6 +2,7 @@ package me.marcus.junius.brutus.zipdiff;
 
 import java.util.Map;
 import java.io.File;
+import java.io.IOException;
 
 import java.lang.reflect.InvocationTargetException;
 import com.beust.jcommander.JCommander;
@@ -14,10 +15,12 @@ public class ZipDiff {
 
 
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException {
         ZipDiffCLI cli = cli(ZipDiff.class.getName(), args, ZipDiffCLI.class);
         exitIfMessage(ZipDiffCLI.checkValidCombinationOfParameters( cli ));
         Map<String, DiffDatum> results = ZipDiffCore.compare(new File(cli.f1), new File(cli.f2));
+        for (String entry : results.keySet())
+            System.out.printf("%s : %s\n", results.get(entry).getKey(), entry);
     }
 
 

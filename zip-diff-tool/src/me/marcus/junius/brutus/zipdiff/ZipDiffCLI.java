@@ -3,6 +3,8 @@ package me.marcus.junius.brutus.zipdiff;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.File;
+import java.io.IOException;
+import java.util.zip.ZipFile;
 
 import com.beust.jcommander.Parameter;
 
@@ -37,6 +39,11 @@ public class ZipDiffCLI {
         File f = new File(fs);
         if ((!f.exists())||(!f.isFile()))
             return String.format("Path '%s' is not a file.", fs);
+        try {
+            new ZipFile(f);
+        } catch (IOException e) {
+            return String.format("File '%s' does not appear to be a valid zip archive", fs);
+        }
         return null;
     }
 }
