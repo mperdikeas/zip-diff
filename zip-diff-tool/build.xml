@@ -4,7 +4,7 @@
     name="zip-diff" basedir="." default="run">
     <taskdef uri="http://net.sf.antcontrib" resource="net/sf/antcontrib/antlib.xml" classpath="${basedir}/tools/ant-contrib-1.0b3.jar" />
 
-    <property name="project.MainClass.name" value="ZipDiff"/>
+    <property name="project.MainClass.name" value="me.marcus.junius.brutus.zipdiff.ZipDiff"/>
     <property name="project.distname"       value="${ant.project.name}"/>
     <property name="jar-artefact.name"      value="${ant.project.name}.jar"/>
     <property name="build.dir"              value="${basedir}/build"/>
@@ -150,6 +150,10 @@
         <java classname ="${project.MainClass.name}" fork="true">
              <jvmarg value="-Xmx1024m"/>
              <classpath refid="run.classpath"/>
+             <arg value="-f1"/>
+             <arg value="./test/f1.zip"/>
+             <arg value="-f2"/>
+             <arg value="./test/f2.zip"/>
         </java>
         </sequential>
     </macrodef>
